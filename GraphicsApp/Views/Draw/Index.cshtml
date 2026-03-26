@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        @{
+            ViewData["Title"] = "Малювання";
+        }
+    </title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/image-posts.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/draw.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GraphicsApp.styles.css" asp-append-version="true" />
+</head>
+<body class="image-posts-container">
+<h2>Створи свій малюнок</h2>
+
+    <div class="draw-main-container">
+        <div class="tools-container">
+            <label>Колір:</label>
+            <input type="color" id="colorPicker" value="#000000" />
+
+            <label>Товщина:</label>
+            <input type="number" id="thicknessPicker" value="2" min="1" max="10" />
+            <button class="tool-btn" onclick="selectBrush('soft')">‧</button>
+            <button class="tool-btn" onclick="selectBrush('medium')">•</button>
+            <button class="tool-btn" onclick="selectBrush('hard')">º</button>
+            <button class="tool-btn" onclick="selectTool('fill')">🪣</button>
+            <button class="tool-btn" onclick="selectTool('eraser')">🧽</button>
+            
+        </div>
+
+        <div class="draw-container">
+            <canvas id="canvas" width="600" height="400"></canvas>
+
+            <form id="uploadForm" method="post" enctype="multipart/form-data" asp-action="PostImage">
+                <textarea id="msg" placeholder="Ваше повідомлення"></textarea>
+                <button type="button" onclick="saveImage()">Опублікувати</button>
+            </form>
+        </div>
+        <div class="tools-container">
+            <button class="tool-btn" onclick="undo()">↩️</button>
+            <button class="tool-btn" onclick="redo()">↪️</button>
+        </div>
+    </div>
+
+
+    <script src="~/js/draw.js"></script>
+</body>
+</html>

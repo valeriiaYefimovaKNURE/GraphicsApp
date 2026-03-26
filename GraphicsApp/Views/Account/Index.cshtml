@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site-buttons.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body style="height: 100%;">
+    <div class="container-center">
+        <h2>Авторизація</h2>
+
+        <div class="auth-switch">
+            <span class="switch-link" onclick="showLogin()">Увійти</span> |
+            <span class="switch-link" onclick="showRegister()">Реєстрація</span>
+        </div>
+
+        <div id="loginForm" class="form">
+            <form asp-controller="Account" asp-action="Login" method="post">
+                <input name="Email" placeholder="Email" />
+                <input name="Password" type="password" placeholder="Пароль" />
+                <button class="btn" type="submit">Увійти</button>
+
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <ul class="form-errors">
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    </ul>
+                }
+            </form>
+        </div>
+
+        <div id="registerForm" class="form" style="display:none;">
+            <form asp-controller="Account" asp-action="Register" method="post">
+                <input name="Email" placeholder="Email" />
+                <input name="UserName" placeholder="Ім'я користувача" />
+                <input name="Password" type="password" placeholder="Пароль" />
+                <input name="ConfirmPassword" type="password" placeholder="Підтвердіть пароль" />
+                <button class="btn" type="submit">Зареєструватися</button>
+
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <ul class="form-errors">
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    </ul>
+                }
+            </form>
+        </div>
+    </div>
+    <script>
+            function showLogin() {
+                document.getElementById("loginForm").style.display = "block";
+                document.getElementById("registerForm").style.display = "none";
+            }
+
+            function showRegister() {
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("registerForm").style.display = "block";
+            }
+    </script>
+</body>
+</html>

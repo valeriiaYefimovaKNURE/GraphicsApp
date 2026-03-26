@@ -1,0 +1,48 @@
+# Исключаем исполняемые файлы
+*.exe
+*.dll
+*.lib
+*.so
+*.vsidx
+*.suo
+
+# Исключаем аудио
+*.wav
+*.mp3
+*.db
+*.db-shm
+*.db-wal
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+.DS_Store
+Thumbs.db
+
+# Исключаем модели
+*.pt
+*.onnx
+*.pkl
+*.bin
+*.json
+
+# Исключаем сборки
+bin/
+obj/
+build/
+.vs/
+Properties/
+models/
+Dependencies/
+Connected Services/
+Migration/
+.idea/
+.vscode/
+
+appsettings.Development.json
+
